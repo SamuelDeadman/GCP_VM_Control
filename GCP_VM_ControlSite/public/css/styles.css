@@ -1,0 +1,121 @@
+body{
+font-family: Arial, Helvetica, sans-serif;
+margin:0;
+background:#f4f6f8;
+color:#333;
+}
+
+.container{
+width:90%;
+max-width:1000px;
+margin:auto;
+}
+
+header{
+background:#1f2937;
+color:white;
+padding:15px 0;
+}
+
+header .container{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+nav a{
+color:white;
+margin-left:20px;
+text-decoration:none;
+font-weight:bold;
+}
+
+nav a:hover{
+text-decoration:underline;
+}
+
+.hero{
+background:url("../images/hero.webp") center/cover no-repeat;
+height:300px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+text-align:center;
+}
+
+.hero h2{
+font-size:2.5em;
+}
+
+main{
+padding:40px 0;
+}
+
+.post{
+background:white;
+padding:20px;
+margin-bottom:20px;
+border-radius:6px;
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+.date{
+font-size:0.9em;
+color:#666;
+}
+
+.read-more{
+display:inline-block;
+margin-top:10px;
+color:#2563eb;
+text-decoration:none;
+}
+
+.read-more:hover{
+text-decoration:underline;
+}
+
+.about ul{
+margin-top:10px;
+}
+
+footer{
+background:#1f2937;
+color:white;
+text-align:center;
+padding:15px;
+margin-top:40px;
+}
+
+
+.gcp-controls{
+margin-top:30px;
+}
+
+.gcp-controls button{
+padding:12px 20px;
+margin:10px;
+font-size:16px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.start-btn{
+background:#2ecc71;
+color:white;
+}
+
+.stop-btn{
+background:#e74c3c;
+color:white;
+}
+
+.start-btn:hover{
+background:#27ae60;
+}
+
+.stop-btn:hover{
+background:#c0392b;
+}

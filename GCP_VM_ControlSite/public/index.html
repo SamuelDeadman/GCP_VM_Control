@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My GCP Project Blog</title>
+<link rel="stylesheet" href="css/styles.css">
+<script src="https://accounts.google.com/gsi/client" async></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="index-client.js" ></script>
+
+    <script>
+      // import { writeinfo } from "./index.js";
+
+      var globalCredential;
+
+      function decodeJWT(token) {
+
+        let base64Url = token.split(".")[1];
+        let base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        let jsonPayload = decodeURIComponent(
+          atob(base64)
+            .split("")
+            .map(function (c) {
+              return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join("")
+        );
+        return JSON.parse(jsonPayload);
+      }
+
+      function handleCredentialResponse(response) {
+
+        console.log("Encoded JWT ID token: " + response.credential);
+        //google acount identity "token" for accept list
+        globalCredential = response.credential;
+
+        const responsePayload = decodeJWT(response.credential);
+
+        writeinfo(responsePayload);
+
+      }
+    </script>
+    
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <h1>My GCP Project</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <h2>Documenting My Google Cloud Project</h2>
+    <p>Create an on demand arma 3 server hosted in GCP to have reduced cost comapred to a dedicated box.</p>
+
+  </div>
+
+</section>
+
+    <h1>Sign in with Google</h1>
+
+    <!-- g_id_onload contains Google Identity Services settings -->
+    <div
+      id="g_id_onload"
+      data-auto_prompt="true"
+      data-callback="handleCredentialResponse"
+      data-auto_select="true"
+      data-client_id="844267666089-nqhi6en1vpdks85ufso3o6m32hoobn9r.apps.googleusercontent.com"
+    ></div>
+    <!-- g_id_signin places the button on a page and supports customization -->
+    <div class="g_id_signin"></div>
+    
+
+    <p id="logininfo">
+    </p>
+
+    <!-- Create multiples of next line and you can modify sendActionSaveDemo to be other functions....  -->
+
+    <!--<input id="clickMe" type="button" value="clickme user action" onclick="sendAction(sendActionSaveDemo);" />-->
+
+    <br/>
+
+
+<section class="container">
+
+    <div class="gcp-controls">
+
+      <button class="start-btn" onclick="startServer()">
+        Start Compute Engine
+      </button>
+
+      <button class="stop-btn" onclick="stopServer()">
+        Stop Compute Engine
+      </button>
+
+      <button class="stop-btn" onclick="SuspendServer()">
+        Suspend Compute Engine
+      </button>
+
+      <button class="stop-btn" onclick="StatusServer()">
+        Update Compute Engine Status 
+      </button>
+
+      <p id="server-status">Status: Unknown</p>
+
+      <div id="log-container"></div>
+
+    </div>
+
+</section>
+
+<main class="container">
+  <article class="post">
+    <h2>Two week pause to complete my GCP Data Practision course.</h2>
+    <p class="date">Early April 2026</p>
+    <p>
+    I've passed !
+    </p>
+  </article>
+
+  <article class="post">
+    <h2>Start / Stop / Suspend Working</h2>
+    <p class="date">Late March 2026</p>
+    <p>
+      I'm now able to call the GCP API and start, stop and supsend the VM mashine, currently the paramaters are hard coded and i plan to use enviromental variables later.
+    </p>
+  </article>
+
+  <article class="post">
+    <h2>First VM Machine</h2>
+    <p class="date">10th March 2026</p>
+    <p>
+      Creating a test VM instance running Debian to act as a test bed for future test to control a VM mashine outside of the GCP cloud console.
+      Also testing manual stop start suspend behaviour, and sensuring persistance storage after restart.
+    </p>
+    <a href="../public/images/10th march 2.png" alt="referance image" class="read-more">Instance running</a>
+    <a href="../public/images/10th march 1.png" alt="referance image" class="read-more">Running and accessable from my IP</a>
+  </article>
+
+  <article class="post">
+    <h2>Instance Templeates & Groups</h2>
+    <p class="date">10th March 2026</p>
+    <p>
+      Creating a Template of the compute Engine VM instanec was needed to allow for the automation by Instance Groups for auto scaling to zero.
+    </p>
+    <a href="../public/images/10th march 3.png" alt="referance image" class="read-more">Instance Templeates</a>
+    <a href="../public/images/10th march 4.png" alt="referance image" class="read-more">Instance Groups</a>
+  </article>
+
+  <article class="post">
+    <h2>Scale to Zero</h2>
+    <p class="date">11 March 2026</p>
+    <p>
+      Using auto scaling scale to zero should ensure the VM instance is only up when its "needed". But a system is needed to control when its needs to start up and stay online. For the moment i use the Pub/Sub style to activate the instance and i reay on auto scaling to stop the instance after the default 10 mins of no activity.
+    </p>
+    <a href="../public/images/10th march 5.png" alt="referance image" class="read-more">Autoscaling</a>
+    <a href="../public/images/10th march 6.png" alt="referance image" class="read-more">Pus/Sub With scale to zero</a>
+  </article>
+
+</main>
+
+<footer>
+  <p>© 2026 My GCP Project Blog</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

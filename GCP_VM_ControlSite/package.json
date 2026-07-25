@@ -1,0 +1,18 @@
+{
+  "name": "samweb1",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@google-cloud/compute": "^6.9.0",
+    "google-auth-library": "^10.6.2"
+  }
+}
